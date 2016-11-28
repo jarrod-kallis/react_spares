@@ -1,0 +1,51 @@
+{
+  "name": "react-red-dice",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "//": "Use nodemon to watch server folder, execute babel-node and serve ./serve/index.js",
+    "start": "nodemon --watch server --exec babel-node -- server/index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "babel-cli": "^6.18.0",
+    "babel-loader": "^6.2.7",
+    "babel-preset-es2015": "^6.18.0",
+    "babel-preset-react": "^6.16.0",
+    "babel-preset-stage-2": "^6.18.0",
+    "jscs": "^3.0.7",
+    "jscs-loader": "^0.3.0",
+    "nodemon": "^1.11.0",
+    "react-hot-loader": "^1.3.0",
+    "webpack": "^1.13.3",
+    "webpack-dev-middleware": "^1.8.4",
+    "webpack-hot-middleware": "^2.13.2"
+  },
+  "dependencies": {
+    "axios": "^0.15.2",
+    "bcryptjs": "^2.3.0",
+    "bluebird": "^3.4.6",
+    "body-parser": "^1.15.2",
+    "bookshelf": "^0.10.2",
+    "classnames": "^2.2.5",
+    "express": "^4.14.0",
+    "jsonwebtoken": "^7.1.9",
+    "jwt-decode": "^2.1.0",
+    "knex": "^0.12.6",
+    "lodash": "^4.16.6",
+    "pg": "^6.1.0",
+    "react": "15.3.2",
+    "react-dom": "15.3.2",
+    "react-redux": "^4.4.6",
+    "react-router": "^3.0.0",
+    "react-toasty": "0.0.4",
+    "redux": "^3.6.0",
+    "redux-thunk": "^2.1.0",
+    "shortid": "^2.2.6",
+    "validator": "^6.1.0"
+  }
+}
