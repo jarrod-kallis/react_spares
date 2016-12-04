@@ -67,7 +67,7 @@ class LoginForm extends React.Component {
           // }, 5000);
 
           // Redirect the user to the home page or to the URL they originally tried to get to before being asked to log in
-          let redirectRoute = this.context.store.getState().route.path || '/';
+          let redirectRoute = this.context.store.getState().route.location || '/';
           this.context.router.push(redirectRoute);
           this.context.store.dispatch(clearRedirectRoute());
         },

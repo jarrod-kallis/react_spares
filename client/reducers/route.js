@@ -3,7 +3,7 @@ import isEmpty from 'lodash/isEmpty';
 import { ADD_REDIRECT_ROUTE, CLEAR_REDIRECT_ROUTE } from '../actions/types';
 
 const initialState = {
-  path: ''
+  location: {}
 };
 
 export default function route(state = initialState, action) {
@@ -11,7 +11,7 @@ export default function route(state = initialState, action) {
     case ADD_REDIRECT_ROUTE:
       return {
         ...state,
-        path: action.path
+        location: action.location
       };
     case CLEAR_REDIRECT_ROUTE:
       return initialState;

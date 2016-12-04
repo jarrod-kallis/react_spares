@@ -32,8 +32,7 @@ export default function(ComposedComponent) {
         toastr.error('Please login to access this page');
 
         // Store URL that the user was trying to get to
-        debugger;
-        this.context.store.dispatch(addRedirectRoute(this.context.router.location.pathname));
+        this.context.store.dispatch(addRedirectRoute(this.context.router.location));
         this.context.router.push('/login');
       }
     }
