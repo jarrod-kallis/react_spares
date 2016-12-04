@@ -72,8 +72,9 @@ class LoginForm extends React.Component {
           this.context.store.dispatch(clearRedirectRoute());
         },
         (error) => {
+          toastr.error(error.response ? error.response.data.errors.form : error.message);
           this.setState({
-            errors: error.response ? error.response.data.errors : error.message,
+            // errors: error.response ? error.response.data.errors : error.message,
             isLoading: false
           });
         }
@@ -88,8 +89,8 @@ class LoginForm extends React.Component {
       <form onSubmit={this.onSubmit}>
         <h1>Login</h1>
 
-        { errors.form &&
-          <div className='alert alert-danger'>{ errors.form }</div> }
+        {/* { errors.form &&
+           <div className='alert alert-danger'>{ errors.form }</div> } */}
         
         <TextFieldGroup
           label='Username / Email'
