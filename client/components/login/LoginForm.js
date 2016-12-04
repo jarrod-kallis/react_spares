@@ -1,10 +1,11 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import { toastr } from 'react-redux-toastr';
 
 import { login } from '../../actions/authActions';
 import validateInput from '../../../shared/validations/login';
 import TextFieldGroup from '../common/TextFieldGroup';
-import { addFlashMessage, removeAllFlashMessages } from '../../actions/flashMessages';
+// import { addFlashMessage, removeAllFlashMessages } from '../../actions/flashMessages';
 import { clearRedirectRoute } from '../../actions/routerActions';
 
 class LoginForm extends React.Component {
@@ -54,14 +55,16 @@ class LoginForm extends React.Component {
 
       this.props.login(this.state).then(
         () => {
-          this.props.addFlashMessage({
-            type: 'success',
-            text: 'You have logged in successfully. Welcome!'
-          });
+          // this.props.addFlashMessage({
+          //   type: 'success',
+          //   text: 'You have logged in successfully. Welcome!'
+          // });
 
-          setTimeout(() => {
-            this.props.removeAllFlashMessages();
-          }, 5000);
+          toastr.success('You have logged in successfully. Welcome!');
+
+          // setTimeout(() => {
+          //   this.props.removeAllFlashMessages();
+          // }, 5000);
 
           // Redirect the user to the home page or to the URL they originally tried to get to before being asked to log in
           let redirectRoute = this.context.store.getState().route.path || '/';
@@ -116,9 +119,9 @@ class LoginForm extends React.Component {
 }
 
 LoginForm.propTypes = {
-  login: React.PropTypes.func.isRequired,
-  addFlashMessage: React.PropTypes.func.isRequired,
-  removeAllFlashMessages: React.PropTypes.func.isRequired
+  login: React.PropTypes.func.isRequired
+  // addFlashMessage: React.PropTypes.func.isRequired,
+  // removeAllFlashMessages: React.PropTypes.func.isRequired
 };
 
 LoginForm.contextTypes = {
@@ -126,4 +129,4 @@ LoginForm.contextTypes = {
   store: React.PropTypes.object.isRequired
 };
 
-export default connect(null, { login, addFlashMessage, removeAllFlashMessages })(LoginForm);
+export default connect(null, { login }/*, addFlashMessage, removeAllFlashMessages }*/)(LoginForm);

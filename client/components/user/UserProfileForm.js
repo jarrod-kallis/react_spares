@@ -1,10 +1,11 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import { toastr } from 'react-redux-toastr';
 
 import TextFieldGroup from '../common/TextFieldGroup';
 import { setCurrentUser } from '../../actions/authActions';
 import { updateUserProfile } from '../../actions/userProfileActions';
-import { addFlashMessage, removeAllFlashMessages } from '../../actions/flashMessages';
+// import { addFlashMessage, removeAllFlashMessages } from '../../actions/flashMessages';
 
 class UserProfileForm extends React.Component {
   constructor(props) {
@@ -39,14 +40,16 @@ class UserProfileForm extends React.Component {
 
     this.props.updateUserProfile(this.state).then(
       () => {
-        this.props.addFlashMessage({
-          type: 'success',
-          text: 'You have updated your user profile successfully.'
-        });
+        // this.props.addFlashMessage({
+        //   type: 'success',
+        //   text: 'You have updated your user profile successfully.'
+        // });
 
-        setTimeout(() => {
-          this.props.removeAllFlashMessages();
-        }, 5000);
+        toastr.success('You have updated your user profile successfully.');
+
+        // setTimeout(() => {
+        //   this.props.removeAllFlashMessages();
+        // }, 5000);
 
         this.context.router.push('/');
       },
@@ -96,9 +99,9 @@ class UserProfileForm extends React.Component {
 
 UserProfileForm.propTypes = {
   user: React.PropTypes.object.isRequired,
-  updateUserProfile: React.PropTypes.func.isRequired,
-  addFlashMessage: React.PropTypes.func.isRequired,
-  removeAllFlashMessages: React.PropTypes.func.isRequired
+  updateUserProfile: React.PropTypes.func.isRequired
+  // addFlashMessage: React.PropTypes.func.isRequired,
+  // removeAllFlashMessages: React.PropTypes.func.isRequired
 };
 
 UserProfileForm.contextTypes = {
@@ -111,4 +114,4 @@ function mapStateToProps(state) {
   };
 }
 
-export default connect(mapStateToProps, { updateUserProfile, addFlashMessage, removeAllFlashMessages })(UserProfileForm);
+export default connect(mapStateToProps, { updateUserProfile }/*, addFlashMessage, removeAllFlashMessages}*/)(UserProfileForm);

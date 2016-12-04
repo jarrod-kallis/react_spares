@@ -5,6 +5,7 @@ import classnames from 'classnames';
 // Used for redirecting user after signing up
 // import { browserHistory } from 'react-router';
 import isEmpty from 'lodash/isEmpty';
+import { toastr } from 'react-redux-toastr';
 
 import timezones from '../../data/timezones';
 import validateInput from '../../../shared/validations/signUp';
@@ -105,10 +106,13 @@ class SignUpForm extends React.Component {
 
           this.props.login({ identifier, password }).then(
             () => {
-              this.props.addFlashMessage({
-                type: 'success',
-                text: 'You have signed up & logged in successfully. Welcome!'
-              });
+              // this.props.addFlashMessage({
+              //   type: 'success',
+              //   text: 'You have signed up & been logged in successfully. Welcome!'
+              // });
+
+              toastr.success('You have signed up & been logged in successfully. Welcome!');
+
               // Redirect to home page
               // browserHistory.push('/');
               this.context.router.push('/');
@@ -207,7 +211,7 @@ class SignUpForm extends React.Component {
 SignUpForm.propTypes = {
   userSignUpRequest: React.PropTypes.func.isRequired,
   login: React.PropTypes.func.isRequired,
-  addFlashMessage: React.PropTypes.func.isRequired,
+  // addFlashMessage: React.PropTypes.func.isRequired,
   doesUserExist: React.PropTypes.func.isRequired
 };
 

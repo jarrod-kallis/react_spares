@@ -1,4 +1,5 @@
 import React from 'react';
+// import 'react-redux-toastr/src/less/index.less';
 
 import NavigationBar from './NavigationBar';
 import FlashMessagesList from './flash/FlashMessagesList';
@@ -16,7 +17,7 @@ class App extends React.Component {
     return (
       <div className='container'>
         <NavigationBar />
-        <FlashMessagesList />
+        {/* <FlashMessagesList /> */}
         { this.props.children }
       </div>
     );

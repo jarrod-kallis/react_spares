@@ -1,11 +1,13 @@
 import { combineReducers } from 'redux';
+import { reducer as toastrReducer } from 'react-redux-toastr';
 
-import flashMessages from './reducers/flashMessages';
+// import flashMessages from './reducers/flashMessages';
 import auth from './reducers/auth';
 import route from './reducers/route';
 
 export default combineReducers({
-  flashMessages,
+  // flashMessages,
   auth,
-  route
+  route,
+  toastr: toastrReducer
 });

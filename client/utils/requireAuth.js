@@ -1,23 +1,38 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import { toastr } from 'react-redux-toastr';
 
-import { addFlashMessage, removeAllFlashMessages } from '../actions/flashMessages';
+// import { addFlashMessage, removeAllFlashMessages } from '../actions/flashMessages';
 import { addRedirectRoute } from '../actions/routerActions';
 
 export default function(ComposedComponent) {
   class Authenticate extends React.Component {
-    componentWillMount() {
-      if (this.props.isAuthenticated === false) {
-        this.props.addFlashMessage({
-          type: 'error',
-          text: 'Please login to access this page'
-        });
+    // The toaster didn't work on componentWillMount
+    // componentWillMount() {
+    //   if (this.props.isAuthenticated === false) {
+    //     // this.props.addFlashMessage({
+    //     //   type: 'error',
+    //     //   text: 'Please login to access this page'
+    //     // });
 
-        setTimeout(() => {
-          this.props.removeAllFlashMessages();
-        }, 5000);
+    //     toastr.success('Please login to access this page');
+
+    //     // setTimeout(() => {
+    //     //   this.props.removeAllFlashMessages();
+    //     // }, 5000);
+
+    //     // Store URL that the user was trying to get to
+    //     // this.context.store.dispatch(addRedirectRoute(this.context.router.location.pathname));
+    //     // this.context.router.push('/login');
+    //   }
+    // }
+
+    componentDidMount() {
+      if (this.props.isAuthenticated === false) {
+        toastr.error('Please login to access this page');
 
         // Store URL that the user was trying to get to
+        debugger;
         this.context.store.dispatch(addRedirectRoute(this.context.router.location.pathname));
         this.context.router.push('/login');
       }
@@ -38,9 +53,9 @@ export default function(ComposedComponent) {
   }
 
   Authenticate.propTypes = {
-    isAuthenticated: React.PropTypes.bool.isRequired,
-    addFlashMessage: React.PropTypes.func.isRequired,
-    removeAllFlashMessages: React.PropTypes.func.isRequired
+    isAuthenticated: React.PropTypes.bool.isRequired
+    // addFlashMessage: React.PropTypes.func.isRequired,
+    // removeAllFlashMessages: React.PropTypes.func.isRequired
   };
 
   Authenticate.contextTypes = {
@@ -54,5 +69,5 @@ export default function(ComposedComponent) {
     };
   }
 
-  return connect(mapStateToProps, { addFlashMessage, removeAllFlashMessages })(Authenticate);
+  return connect(mapStateToProps/*, { addFlashMessage, removeAllFlashMessages }*/)(Authenticate);
 }

@@ -7,6 +7,7 @@ import thunk from 'redux-thunk';
 import { createStore, applyMiddleware, compose } from 'redux';
 // import jwt from 'jsonwebtoken';
 import jwtDecode from 'jwt-decode';
+import ReduxToastr from 'react-redux-toastr';
 
 import routes from './routes';
 import rootReducer from './rootReducer';
@@ -33,10 +34,22 @@ if (localStorage.jwtToken) {
 render(
   // To understand React JSX install preset 'babel-preset-react' in .babelrc
   <Provider store={store}>
-    <Router
-      history={browserHistory}
-      routes={routes}
-    />
+    <div>
+      <ReduxToastr
+        timeOut={4000}
+        newestOnTop={false}
+        preventDuplicates={true}
+        position='top-left'
+        transitionIn='fadeIn'
+        transitionOut='fadeOut'
+        progressBar
+      />
+
+      <Router
+        history={browserHistory}
+        routes={routes}
+      />
+    </div>
   </Provider>,
   document.getElementById('app')
 );
